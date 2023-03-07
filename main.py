@@ -73,12 +73,16 @@ async def kazah(message:types.Message):
     cursor = connect.cursor()
     if message.text == '1':
         cursor.execute(f"INSERT INTO orders VALUES('осел', 'None', '{time.ctime()}');")
+        await message.answer("бедный ослик")
     elif message.text == '2':
         cursor.execute(f"INSERT INTO orders VALUES('капибара', 'None', '{time.ctime()}');")
+        await message.answer("нет капибара нет-нет")
     elif message.text == '3':
         cursor.execute(f"INSERT INTO orders VALUES('бобр', 'None', '{time.ctime()}');")
+        await message.answer("че бобра убивать что опять")
     elif message.text == '4':
         cursor.execute(f"INSERT INTO orders VALUES('Асхат', 'None', '{time.ctime()}');")
+        await message.answer("бля он один такой если его есть то только в постели")
     
     connect.commit()
     await message.reply("ожидай еду живадер")
