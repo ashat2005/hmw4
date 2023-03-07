@@ -39,7 +39,7 @@ async def daypozvonity(message:types.Message):
     await message.answer('Подтвердите отправку своего номера.', reply_markup=nomer)
 
 @dp.message_handler(content_types=types.ContentType.CONTACT)
-async def add_number(message:types.Message):
+async def pozvonitesty(message:types.Message):
     cursor = connect.cursor()
     cursor.execute(f"UPDATE customers SET phone_number = '{message.contact['phone_number']}' WHERE user_id = {message.from_user.id};")
     connect.commit()
@@ -50,7 +50,7 @@ async def pikitochenye(message:types.Message):
     await message.answer("Подтвердите отправку местоположения.", reply_markup=mesto)
 
 @dp.message_handler(content_types=types.ContentType.LOCATION)
-async def add_location(message:types.Message):
+async def skagigdetygivyshy(message:types.Message):
     await message.answer("Ваш адрес записан.")
     cursor = connect.cursor()
     cursor.execute(f"INSERT INTO address VALUES ('{message.from_user.id}', '{message.location.longitude}', '{message.location.latitude}');")
@@ -69,7 +69,7 @@ async def vkusnozaybal(message:types.Message):
         await message.answer_photo(p4, caption="4. ахуенный я пиздатый сексуальный анальный великолепный бля идеал просто")
 
 @dp.message_handler(text=[1,2,3,4])
-async def add_order(message:types.Message):
+async def kazah(message:types.Message):
     cursor = connect.cursor()
     if message.text == '1':
         cursor.execute(f"INSERT INTO orders VALUES('осел', 'None', '{time.ctime()}');")
@@ -81,6 +81,9 @@ async def add_order(message:types.Message):
         cursor.execute(f"INSERT INTO orders VALUES('Асхат', 'None', '{time.ctime()}');")
     
     connect.commit()
-    await message.reply("Ваш заказ записан")
+    await message.reply("ожидай еду живадер")
 
+@dp.message_handler()
+async def pidr(message:types.Message):
+    await message.reply("Ты еблан у меня нет таких команд вот мои команды", reply_markup=button)
 executor.start_polling(dp)
